@@ -33,14 +33,6 @@ class CafeForm(FlaskForm):
     power_rating = SelectField("Power Socket Availability", choices=["✘", "🔌", "🔌🔌", "🔌🔌🔌", "🔌🔌🔌🔌", "🔌🔌🔌🔌🔌"], validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-# Exercise:
-# add: Location URL, open time, closing time, coffee rating, wifi rating, power outlet rating fields
-# make coffee/wifi/power a select element with choice of 0 to 5.
-#e.g. You could use emojis ☕️/💪/✘/🔌
-# make all fields required except submit
-# use a validator to check that the URL field has a URL entered.
-# ---------------------------------------------------------------------------
-
 
 # all Flask routes below
 @app.route("/")
@@ -61,9 +53,7 @@ def add_cafe():
                             f"\n{form.wifi_rating.data},"
                             f"\n{form.power_rating.data}")
             return redirect(url_for('cafes'))
-    # Exercise:
-    # Make the form write a new row into cafe-data.csv
-    # with   if form.validate_on_submit()
+    
     return render_template('add.html', form=form)
 # 1. Form Validation (if form.validate_on_submit():)
 # This line checks whether the form has been submitted (via a POST request) and whether the form data passes all the validation rules you defined in the CafeForm class.
